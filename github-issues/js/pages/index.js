@@ -1,8 +1,17 @@
 define(
   [
-  
+  	'generics/generic-page-view'
   ],
-  function(){
+  function(gpV){
+  	var view = new gpV({
+      templates: {
+        main: "#template-index"
+      }
+    });
 
+    return {
+      view: view,
+      name: 'index'
+    };
   }
 );

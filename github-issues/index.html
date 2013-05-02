@@ -28,15 +28,63 @@
 
         <!-- templates -->
         <script type="text/html" id="template-global-modal">
-
+            <div class="modal js-global-modal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3><%= headline %></h3>
+                </div>
+                <div class="modal-body">
+                    <p><%= message %></p>
+                </div>
+                <div class="modal-footer">
+                    <form>
+                        <button data-dismiss="modal" class="js-close btn"><%= button %></button>
+                    </form>
+                </div>
+            </div>
         </script>
 
         <script type="text/html" id="template-index">
+            <div class="row">
+                <div class="eightcol">
+                    <h2>GitHub Issue viewer for Rails</h2>
+                    
+                    <ul class="js-issues-list"></ul>
+                </div>
+                <!-- eightcol -->
+            </div>
+        </script>
 
+        <script type="text/html" id="template-issue-item">
+            <div id="<%= id %>" class="twelvecol ph-inv-item js-item">
+                <div class="twelvecol">
+
+                    <div class="threecol">
+                        <p>#<%= number %> - <a href="/issues/<%= id %>" class="js-title"><%= title %></a></p>
+                    </div>
+                    
+                    <div class="sevencol">
+                        <p>$<%= labels %></p>
+                        <p>Reported by: <img class="js-thumb" src="<%= gravatar %>" alt="<%= username %>" /> <%= username %></p>
+                    </div>
+                </div>
+            </div>
         </script>
 
         <script type="text/html" id="template-issue-detail">
-
+            <div class="js-issue-detail row">
+                <div class="cf">
+                    <h2>Issue Detail</h2>
+                    <div class="row">
+                        <p>Title: <%= title %></p>
+                        <p>Summary: <%= summary %></p>
+                        <p>State: <%= state %></p>
+                        <p>Labels: <%= labels %></p>
+                        <p>Reporting user: <%= gravatar %> <% username %></p>
+                    </div>
+                    <!-- row -->
+                </div>
+            </div>
         </script>
     </body>
 </html>
