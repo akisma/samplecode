@@ -31,7 +31,7 @@ require.config({
     // Libraries.
     jquery:       'vendor/jquery-1.9.1.min',
     lodash:       'vendor/lodash-1.2.1-min',
-    backbone:     'vendor/backbone-1.0-min',
+    backbone:     'vendor/backbone-1.0',
 
     //My components
     errors:       'components/errors'
@@ -83,6 +83,10 @@ function(app, Router) {
       // calls this anyways.  The fragment is sliced from the root.
       Backbone.history.navigate(href, true);
     }
-  });	
+  });
+
+  if (!Backbone.History.started){
+    Backbone.history.start({ pushState: true, root: app.root });
+  } 
 });
 

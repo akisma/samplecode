@@ -78,7 +78,7 @@ define(
       //Append the content panel to the main app element
       replaceContent: function(content) {
         this.view.$el.empty();
-        return $(content).appendTo(this.view.$el); //chaining
+        return $($.trim(content)).appendTo(this.view.$el); //chaining
       },
     };
 

@@ -8,7 +8,7 @@
 //TODO DOCUMENT!!!
 define(
   [
-    'ours/generic-view',
+    'generics/generic-view',
     'jquery', 
     'lodash',
     'app',

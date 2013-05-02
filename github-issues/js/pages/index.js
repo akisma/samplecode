@@ -1,12 +1,18 @@
 define(
   [
-  	'generics/generic-page-view'
+  	'generics/generic-page-view',
+  	'components/issues-list'
   ],
-  function(gpV){
-  	var view = new gpV({
+  function(gpV, iL){
+  	var view,
+  		issuesList;
+
+  	view = new gpV({
       templates: {
         main: "#template-index"
-      }
+      },
+
+      issuesList: issuesList
     });
 
     return {
