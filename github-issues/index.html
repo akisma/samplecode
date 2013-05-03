@@ -59,12 +59,13 @@
                 <div class="twelvecol">
 
                     <div class="threecol">
-                        <p>#<%= number %> - <a href="/issues/<%= id %>" class="js-title"><%= title %></a></p>
+                        <p>#<%= number %> - <a href="/issues/<%= number %>" class="js-title"><%= title %></a></p>
                     </div>
                     
                     <div class="sevencol">
                         <p>$<%= labels %></p>
-                        <p>Reported by: <img class="js-thumb" src="<%= gravatar %>" alt="<%= username %>" /> <%= username %></p>
+                        <p>Reported by: <img class="js-thumb" src="<%= user.avatar_url %>" alt="<%= user.login %>" /> <%= user.login %></p>
+                        <p><% body.substring(0, 140) %></p>
                     </div>
                 </div>
             </div>
@@ -76,10 +77,10 @@
                     <h2>Issue Detail</h2>
                     <div class="row">
                         <p>Title: <%= title %></p>
-                        <p>Summary: <%= summary %></p>
+                        <p>Summary: <%= body %></p>
                         <p>State: <%= state %></p>
                         <p>Labels: <%= labels %></p>
-                        <p>Reporting user: <%= gravatar %> <% username %></p>
+                        <p>Reporting user: <%= user.avatar_url %> <% user.login %></p>
                     </div>
                     <!-- row -->
                 </div>
