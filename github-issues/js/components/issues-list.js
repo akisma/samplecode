@@ -38,13 +38,19 @@ define(
         });
 
         return view.$el;
+      },
+
+      nextPage: function(){
+
+      },
+
+      prevPage: function(){
+
       }
     });
 
 
     collection = bb.Collection.extend({
-      url: 'https://api.github.com/repos/rails/rails/issues',
-      model: issue,
 
       nextPage: function(){
 

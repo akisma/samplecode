@@ -56,10 +56,12 @@ require([
   'app',
 
   // Main Router.
-  'router'
+  'router',
+
+  'components/collection-issues'
 ],
 
-function(app, Router) {
+function(app, Router, issues) {
 
   // Define your master router on the application namespace and trigger all
   // navigation from this instance.
@@ -85,6 +87,8 @@ function(app, Router) {
     }
   });
 
+  app.issues = new issues();
+  
   if (!Backbone.History.started){
     Backbone.history.start({ pushState: true, root: app.root });
   } 

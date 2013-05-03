@@ -7,7 +7,7 @@ function(app, bb) {
   var Router = Backbone.Router.extend({
     routes: {
       '':               'index',
-      'issues/:id':     'issueDetail'
+      'issues/:number':     'issueDetail'
     },
 
     loadModule: function(module){
@@ -18,8 +18,13 @@ function(app, bb) {
       require(['pages/index'], this.loadModule);
     },
 
-    issueDetail: function(id){
-      require(['pages/issue-detail'], this.loadModule);
+    issueDetail: function(number){
+      var router = this;
+
+      require(['pages/issue-detail'], function(module){
+        module.findModel(number);
+        router.loadModule(module);
+      });
     }
   });
 

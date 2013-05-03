@@ -6,21 +6,16 @@ define(
     'components/model-issue'
   ],
   function(app, errors, bb, issue){
-    var issues = new bb.Collection.extend({
+    var issues = bb.Collection.extend({
       initialize: function(){
-        this.fetch();
+        $.when(this.fetch())
+         .then(function(){ 
+           app.eventHub.trigger('issues:loaded');
+        });
       },
 
       url: 'https://api.github.com/repos/rails/rails/issues',
-      model: issue,
-
-      nextPage: function(){
-
-      },
-
-      prevPage: function(){
-
-      }
+      model: issue
     });
 
     return issues;

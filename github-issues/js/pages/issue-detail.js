@@ -1,24 +1,23 @@
 define(
   [
     'app',
-    'components/collection-issues'
+    'views/issue-detail'
   ],
-  function(app, issues){
-    var model = new oM(),
-        module;
+  function(app, issueView){
+    var module;
 
     module = {
-      model: model,
-      view: new oV({ model: model })
+      findModel: function(number){
+        this.model = app.issues.where({ number: number })[0],
+        this.view = new issueView({ model: this.model })
+      }
     };
 
     /* reevaluate this */
-    $.when(issues.fetch())
-      .then(function(){
-        module.model.fetch();
-        module.view.close();
-        module.view.render();
-      });
+    app.eventHub.on('issues:loaded', function(){
+      module.view.close();
+      module.view.render();
+    });
 
     return module;
   }
