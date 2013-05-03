@@ -7,7 +7,7 @@ define(
       initialize: function(){
         gpV.prototype.initialize.call(this);
 
-        this.options.model.on('error', this.errorHandler, this);
+        this.model.on('error', this.errorHandler, this);
       },
 
       templates: {

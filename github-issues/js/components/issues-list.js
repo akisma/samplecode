@@ -50,20 +50,11 @@ define(
     });
 
 
-    collection = bb.Collection.extend({
-
-      nextPage: function(){
-
-      },
-
-      prevPage: function(){
-
-      }
-    });
+    
 
     module = {
       view: new view(),
-      collection: new collection()
+      collection: new cI()
     };
 
     $.when(module.collection.fetch())

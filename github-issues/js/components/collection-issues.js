@@ -8,9 +8,14 @@ define(
   function(app, errors, bb, issue){
     var issues = bb.Collection.extend({
       initialize: function(){
-        $.when(this.fetch())
-         .then(function(){ 
-           app.eventHub.trigger('issues:loaded');
+        this.fetch({
+          success: function(){
+            app.eventHub.trigger('issues:loaded');
+          },
+          error: function(){
+            alert('there was an error retrieving the github issues!');
+          },
+          reset: true
         });
       },
 

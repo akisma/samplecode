@@ -8,8 +8,11 @@ define(
 
     module = {
       findModel: function(number){
-        this.model = app.issues.where({ number: number })[0],
-        this.view = new issueView({ model: this.model })
+        blah = app.issues;
+        module.model = app.issues.findWhere({ number: parseInt(number) });
+        crap = app.issues.findWhere({ number: parseInt(number) });
+        module.view = new issueView({ model: this.model });
+        module.view.model = module.model;
       }
     };
 

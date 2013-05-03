@@ -88,9 +88,11 @@ function(app, Router, issues) {
   });
 
   app.issues = new issues();
-  
-  if (!Backbone.History.started){
-    Backbone.history.start({ pushState: true, root: app.root });
-  } 
+
+  app.eventHub.on('issues:loaded', function(){
+    if (!Backbone.History.started){
+      Backbone.history.start({ pushState: true, root: app.root });
+    } 
+  });
 });
 

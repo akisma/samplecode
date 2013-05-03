@@ -5,7 +5,6 @@
 //  templates: (normal templates object)
 //  customEvents: if any
 //  customRender: if any
-//TODO DOCUMENT!!!
 define(
   [
     'generics/generic-view',
