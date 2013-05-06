@@ -1,19 +1,37 @@
 define(
   [
-  	'generics/generic-page-view',
-  	'components/issues-list'
+    'app',
+    'generics/generic-page-view',
+    'components/issues-list'
   ],
-  function(gpV, iL){
-  	var view,
-  		issuesList;
+  function(app, gpV, iL){
+    var view,
+      issuesList,
+      viewClass;
 
-  	view = new gpV({
+    viewClass = gpV.extend({
+      render: function(){
+        gpV.prototype.render.call(this);
+
+        if (app.issues.length == 0){
+          app.eventHub.on('issues:loaded', function(){
+            view.$el.append(view.issuesList.view.render());
+          });
+        } else {
+          view.$el.append(view.issuesList.view.render());
+        }
+      }
+    });
+
+    view = new viewClass({
       templates: {
         main: "#template-index"
-      },
-
-      issuesList: issuesList
+      }
     });
+
+    view.issuesList = iL;
+
+    
 
     return {
       view: view,

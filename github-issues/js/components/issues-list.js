@@ -2,11 +2,9 @@ define(
   [
     'app',
     'backbone',
-    'generics/generic-view',
-    'components/collection-issues',
-    'components/model-issue'
+    'generics/generic-view'
   ],
-  function(app, bb, gV, cI, issue){
+  function(app, bb, gV){
     var view,
         collection;
 
@@ -15,16 +13,17 @@ define(
         gV.prototype.precompileTemplates.call(this);
       },
 
-      el: $('.js-issues-list'),
-
       templates: {
         item: '#template-issue-item'
       },
 
       render: function(){
-        this.setElement($('.js-issues-list'));
         this.populateLists();
         return this.el;
+      },
+
+      events: {
+
       },
 
       //##populateList
@@ -49,18 +48,10 @@ define(
       }
     });
 
-
-    
-
     module = {
       view: new view(),
-      collection: new cI()
+      collection: app.issues
     };
-
-    $.when(module.collection.fetch())
-      .then(function(resp){
-        module.view.render();
-      });
 
     return module;
   }
