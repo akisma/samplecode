@@ -10,6 +10,11 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+p {
+    padding: 0;
+    margin: 0;
+}
+
 html,
 button,
 input,
@@ -297,4 +302,25 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
+}
+
+body {
+    font-size: 14px;
+}
+
+.gh-issue {
+    background: #E6E6DC;
+    border: 3px solid #00628B;
+    padding: 5px;
+    margin-bottom: 5px;
+    list-style-type: none;
+}
+
+.gh-small {
+    font-size: 11px;
+}
+
+
+a {
+    color: #00628B;
 }

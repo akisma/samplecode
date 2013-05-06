@@ -13,6 +13,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/grid.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
@@ -46,29 +47,26 @@
 
         <script type="text/html" id="template-index">
             <div class="row">
-                <div class="eightcol">
-                    <h2>GitHub Issue viewer for Rails</h2>
-                    
-                    <ul class="js-issues-list"></ul>
-                </div>
+                <h2>GitHub Issue viewer for Rails</h2>
+                
+                <ul class="js-issues-list"></ul>
             </div>
         </script>
 
         <script type="text/html" id="template-issue-item">
-            <div id="<%= id %>" class="twelvecol js-item">
-                <div class="twelvecol">
-
-                    <div class="threecol">
-                        <p>#<%= number %> - <a href="/issues/<%= number %>" class="js-title"><%= title %></a></p>
+            <li id="<%= id %>" class="twelvecol gh-issue js-item">
+                <div class="twelvecol row">
+                    <div class="onecol">
+                        <img class="js-thumb" src="<%= user.avatar_url %>" alt="<%= user.login %>" /> 
                     </div>
-                    
-                    <div class="sevencol">
-                        <p>$<%= labels %></p>
-                        <p>Reported by: <img class="js-thumb" src="<%= user.avatar_url %>" alt="<%= user.login %>" /> <%= user.login %></p>
-                        <p><% body.substring(0, 140) %></p>
+                    <div class="tencol">
+                        <p>#<%= number %> - <a href="/issues/<%= number %>" class="js-title"><%= title %></a></p>
+                        <p><% $.each(labels, function(idx, itm){ %> <%= labels[idx] %> <% }); %></p>
+                        <p class="gh-small">Reported by: <%= user.login %></p>
+                        <p class="gh-small"><%= body.substring(0, 140) %></p>
                     </div>
                 </div>
-            </div>
+            </li>
         </script>
 
         <script type="text/html" id="template-issue-detail">
@@ -79,8 +77,8 @@
                         <p>Title: <%= title %></p>
                         <p>Summary: <%= body %></p>
                         <p>State: <%= state %></p>
-                        <p>Labels: <%= labels %></p>
-                        <p>Reporting user: <%= user.avatar_url %> <% user.login %></p>
+                        <p>Labels: <% $.each(labels, function(idx, itm){ %> <%= labels[idx] %> <% } %></p>
+                        <p>Reporting user: <img src="<%= user.avatar_url %>" alt="<%= user.login %>" /> <% user.login %></p>
                     </div>
                     <!-- row -->
                 </div>
